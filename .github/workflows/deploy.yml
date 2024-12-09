@@ -17,7 +17,7 @@ jobs:
       - name: Docker compose up
         run: |
           docker build -t my-nginx:dev .
-          cd /home/sk/lab3/dev
+          cd /home/weynesh/intern-task/task-five/dev
           ./deploy.sh
 
   deploy-prod:
@@ -30,5 +30,5 @@ jobs:
       - name: Docker compose up
         run: |
           docker build -t my-nginx:prod .
-          cd /home/sk/lab3/prod
+          cd /home/weynesh/interm-task/task-five/prod
           ./deploy.sh
