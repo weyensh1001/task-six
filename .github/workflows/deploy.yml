@@ -1,0 +1,34 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - dev
+      - main
+
+jobs:
+  deploy-dev:
+    if: github.ref == 'refs/heads/dev'
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Docker compose up
+        run: |
+          docker build -t my-nginx:dev .
+          cd /home/sk/lab3/dev
+          ./deploy.sh
+
+  deploy-prod:
+    if: github.ref == 'refs/heads/main'
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Docker compose up
+        run: |
+          docker build -t my-nginx:prod .
+          cd /home/sk/lab3/prod
+          ./deploy.sh
